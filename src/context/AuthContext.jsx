@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }) => {
     const login = useCallback(async (credentials) => {
         try {
             const response = await authService.login(credentials)
-            const { token, user: userData } = response.data
+            const { token, ...userData } = response.data
 
             localStorage.setItem('token', token)
             localStorage.setItem('user', JSON.stringify(userData))
@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }) => {
     const register = useCallback(async (userData) => {
         try {
             const response = await authService.register(userData)
-            const { token, user: newUser } = response.data
+            const { token, ...newUser } = response.data
 
             localStorage.setItem('token', token)
             localStorage.setItem('user', JSON.stringify(newUser))
